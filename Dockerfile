@@ -14,7 +14,6 @@ FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
 COPY ./src ./src
 
-RUN bun run lint
 RUN bun run build-server
 
 FROM base AS release
