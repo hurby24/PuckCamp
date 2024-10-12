@@ -1,0 +1,29 @@
+{
+  "name": "puckcamp-backend",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "build-server": "bun build ./src/index.ts --target=bun --outfile=./build/server.js",
+    "start": "bun run ./build/server.js",
+    "lint": "bunx biome lint --write ./src",
+    "format": "bunx biome format --write ./src"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.34.1",
+    "hono": "^4.6.3",
+    "http-status": "^1.7.4",
+    "ioredis": "^5.4.1",
+    "nanoid": "^5.0.7",
+    "oslo": "^1.2.1",
+    "pg": "^8.13.0",
+    "redis": "^4.7.0",
+    "zod": "^3.23.8",
+    "zod-error": "^1.5.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.3",
+    "@types/bun": "latest",
+    "@types/pg": "^8.11.10",
+    "drizzle-kit": "^0.25.0",
+    "tsx": "^4.19.1"
+  }
+}
