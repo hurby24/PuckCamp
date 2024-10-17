@@ -8,12 +8,12 @@
     "format": "bunx biome format --write ./src"
   },
   "dependencies": {
+    "@oslojs/encoding": "^1.1.0",
     "drizzle-orm": "^0.34.1",
     "hono": "^4.6.3",
     "http-status": "^1.7.4",
     "ioredis": "^5.4.1",
     "nanoid": "^5.0.7",
-    "oslo": "^1.2.1",
     "pg": "^8.13.0",
     "redis": "^4.7.0",
     "zod": "^3.23.8",
