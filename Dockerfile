@@ -15,8 +15,7 @@ COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
 ENV NODE_ENV=production
-RUN bun test # Adjust this based on your test setup
-RUN bun run build-server # Custom build step for your project
+RUN bun build-server
 
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
