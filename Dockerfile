@@ -12,15 +12,18 @@ RUN cd /temp/prod && bun install --frozen-lockfile --production
 
 FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
-COPY ./src ./src
+COPY . .
 
-RUN bun run build-server
+ENV NODE_ENV=production
+RUN bun test # Adjust this based on your test setup
+RUN bun run build-server # Custom build step for your project
 
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/build/server.js ./build/server.js
-COPY --from=prerelease /usr/src/app/package.json . 
+COPY --from=prerelease /usr/src/app/build/server.js .
+COPY --from=prerelease /usr/src/app/package.json .
+
 
 USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "start" ]
+ENTRYPOINT [ "bun", "run", "build/server.js" ]
