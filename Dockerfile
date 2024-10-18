@@ -25,4 +25,4 @@ COPY --from=prerelease /usr/src/app/package.json .
 
 USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "run", "build/server.js" ]
+ENTRYPOINT [ "bun", "run", "./build/server.js" ]
