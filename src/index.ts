@@ -10,20 +10,16 @@ const app = new Hono();
 
 app.use(logger());
 app.notFound(() => {
-	throw new ApiError(httpStatus.NOT_FOUND, "Not found");
+  throw new ApiError(httpStatus.NOT_FOUND, "Not found");
 });
 
 app.onError(errorHandler);
 
 app.get("/", async (c) => {
-	const redis = getRedisClient();
-	//   await redis.set("foo", "bar");
-	//   const value = await redis.get("foo");
-	const envData = process.env.DATABASE_URL;
-	return c.text(`redis is working: _ and DATABASE_URL is ${envData}`);
+  return c.text("Hello world");
 });
 
 export default {
-	port: process.env.PORT || 3000,
-	fetch: app.fetch,
+  port: process.env.PORT || 3000,
+  fetch: app.fetch,
 };
