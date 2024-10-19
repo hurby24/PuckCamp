@@ -3,6 +3,8 @@ import { ApiError } from "./utils";
 import httpStatus from "http-status";
 import { errorHandler } from "./middlewares";
 import { logger } from "hono/logger";
+import { getRedisClient } from "./db/redisClient";
+import { getDbConnection } from "./db/dbConnect";
 
 const app = new Hono();
 
@@ -14,7 +16,11 @@ app.notFound(() => {
 app.onError(errorHandler);
 
 app.get("/", async (c) => {
-	return c.text("Hello Hono!");
+	const redis = getRedisClient();
+	//   await redis.set("foo", "bar");
+	//   const value = await redis.get("foo");
+	const envData = process.env.DATABASE_URL;
+	return c.text(`redis is working: _ and DATABASE_URL is ${envData}`);
 });
 
 export default {
