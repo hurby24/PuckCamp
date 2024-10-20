@@ -18,5 +18,5 @@ export const getRedisClient = () => {
     });
   }
 
-  return new Redis("redis://puck-redis:6379");
+  return new Redis();
 };
