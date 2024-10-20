@@ -58,9 +58,11 @@ jobs:
             # Remove old container
             docker rm $(echo $IMAGE_NAME)
             # Run a new container from a new image
-            docker run -d -p 3000:3000 \
+            docker run -d -p 80:80 \
             --restart always \
             --name $(echo $IMAGE_NAME) \
             -e DOPPLER_TOKEN="${{ secrets.DOPPLER_TOKEN }}" \
+            -e POSTGRES_USER="${{ secrets.POSTGRES_USER }}" \
+            -e POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \
+            -e POSTGRES_DB="${{ secrets.POSTGRES_DB }}" \
             $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
-          debug: true
