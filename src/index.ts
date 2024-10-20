@@ -16,7 +16,8 @@ app.notFound(() => {
 app.onError(errorHandler);
 
 app.get("/", async (c) => {
-  return c.text("Hello world");
+  const envVar = process.env.NODE_ENV + " " + process.env.DATABASE_URL;
+  return c.text(envVar);
 });
 
 export default {

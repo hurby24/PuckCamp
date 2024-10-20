@@ -61,5 +61,6 @@ jobs:
             docker run -d -p 3000:3000 \
             --restart always \
             --name $(echo $IMAGE_NAME) \
+            -e DOPPLER_TOKEN="${{ secrets.DOPPLER_TOKEN }}" \
             $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
           debug: true
