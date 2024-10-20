@@ -67,7 +67,7 @@ jobs:
             docker pull $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
 
             # Set the new image name in docker-compose
-            sed -i "s|image: .*|image: ${REGISTRY}/${IMAGE_NAME}:$(echo $GITHUB_SHA | head -c7)|" docker-compose.yml
+            sed -i "s|image: registry.digitalocean.com/puckcamp-backend/puckcamp-backend:.*|image: ${REGISTRY}/${IMAGE_NAME}:$(echo $GITHUB_SHA | head -c7)|" docker-compose.yml
 
             # Start the services with the new image
             docker-compose up -d
