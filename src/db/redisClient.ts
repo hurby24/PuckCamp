@@ -18,5 +18,8 @@ export const getRedisClient = () => {
     });
   }
 
-  return new Redis();
+  return new Redis({
+    host: "puck-redis",
+    port: 6379,
+  });
 };
