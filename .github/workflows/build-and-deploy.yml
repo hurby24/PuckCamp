@@ -55,7 +55,7 @@ jobs:
             docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
 
             # Change to the application directory
-            cd /root/puckcamp-backend
+            cd puckcamp-backend
 
             # Stop the Docker Compose services
             docker-compose down
