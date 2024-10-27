@@ -10,19 +10,19 @@ const app = new Hono();
 
 app.use(logger());
 app.notFound(() => {
-  throw new ApiError(httpStatus.NOT_FOUND, "Not found");
+	throw new ApiError(httpStatus.NOT_FOUND, "Not found");
 });
 
 app.onError(errorHandler);
 
 app.get("/", async (c) => {
-  const redisClient = getRedisClient();
-  await redisClient.set("test", "secret ket is here");
-  const value = await redisClient.get("test");
-  return c.text("value" + value);
+	const redisClient = getRedisClient();
+	await redisClient.set("test", "secret ket is here");
+	const value = await redisClient.get("test");
+	return c.text(`value" ${value}`);
 });
 
 export default {
-  port: process.env.PORT || 3000,
-  fetch: app.fetch,
+	port: process.env.PORT || 3000,
+	fetch: app.fetch,
 };

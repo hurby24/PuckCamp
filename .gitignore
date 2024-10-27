@@ -4,3 +4,6 @@ build/
 .env
 .env.test
 *.log
+
+src/db/migrations/
+src/db/migrations/meta/
