@@ -6,4 +6,3 @@ build/
 *.log
 
 src/db/migrations/
-src/db/migrations/meta/

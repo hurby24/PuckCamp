@@ -1,7 +1,7 @@
 import { getDbConnection } from "../../db/dbConnect";
 import { password_reset_tokens } from "../../db/schema";
 import { generateIdFromEntropySize } from "../../utils";
-import { eq, is } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
 export async function hashPassword(password: string): Promise<string> {
 	return await Bun.password.hash(password, {

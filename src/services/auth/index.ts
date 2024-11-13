@@ -7,5 +7,13 @@ export {
 	Session,
 	SessionOptions,
 } from "./session";
-
-export { verifyPasswordHash, hashPassword } from "./password";
+export {
+	verifyPasswordHash,
+	hashPassword,
+	createPasswordResetToken,
+	validatePasswordResetToken,
+} from "./password";
+export {
+	createEmailVerificationCode,
+	validateEmailVerificationCode,
+} from "./email-verification";
