@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
-    "@types/bun": "latest",
+    "@types/bun": "^1.1.13",
     "@types/pg": "^8.11.10",
     "drizzle-kit": "^0.25.0",
     "tsx": "^4.19.1"

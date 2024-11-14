@@ -9,7 +9,7 @@ import {
   getCookie,
 } from "hono/cookie";
 import * as authService from "../services/auth";
-import * as authValidation from "../validations/user.validation";
+import * as userValidation from "../validations/user.validation";
 
 const authRoute = new Hono();
 
