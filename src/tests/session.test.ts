@@ -57,8 +57,13 @@ describe("Session Service", () => {
 	});
 
 	it("should invalidate all sessions for a user", async () => {
-		const newToken = generateSessionToken();
-		await createSession(newToken, userId, {
+		const newTokenOne = generateSessionToken();
+		await createSession(newTokenOne, userId, {
+			emailVerified: true,
+			temporary: false,
+		});
+		const newTokenTwo = generateSessionToken();
+		await createSession(newTokenTwo, userId, {
 			emailVerified: true,
 			temporary: false,
 		});

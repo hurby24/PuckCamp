@@ -103,9 +103,14 @@ export async function invalidateAllSessions(userId: string): Promise<void> {
 	const redis = getRedisClient();
 	const sessionIds = await redis.smembers(`user:${userId}:sessions`);
 	if (sessionIds.length > 0) {
-		await redis.del(...sessionIds.map((id) => `session:${id}`));
+		const pipeline = redis.pipeline();
+		sessionIds.map((id) => pipeline.del(`session:${id}`));
+
+		pipeline.del(`user:${userId}:sessions`);
+		await pipeline.exec();
+	} else {
+		await redis.del(`user:${userId}:sessions`);
 	}
-	await redis.del(`user:${userId}:sessions`);
 }
 
 export interface Session {

@@ -13,30 +13,30 @@ const app = new Hono();
 app.use(secureHeaders());
 app.on(["POST", "PUT", "DELETE"], "/v0/*", csrfToken);
 app.use(
-  "/v0/*",
-  cors({
-    origin: "https://puckcamp.net",
-    allowMethods: ["GET", "POST", "PUT", "DELETE"],
-  })
+	"/v0/*",
+	cors({
+		origin: "https://puckcamp.net",
+		allowMethods: ["GET", "POST", "PUT", "DELETE"],
+	}),
 );
 app.use(prettyJSON());
 app.use(logger());
 
 app.notFound(() => {
-  throw new ApiError(httpStatus.NOT_FOUND, "Not found");
+	throw new ApiError(httpStatus.NOT_FOUND, "Not found");
 });
 
 app.onError(errorHandler);
 
 app.get("/", async (c) => {
-  return c.text("workin'");
+	return c.text("workin'");
 });
 
 defaultRoutes.map((route) => {
-  app.route(`${route.path}`, route.route);
+	app.route(`${route.path}`, route.route);
 });
 
 export default {
-  port: process.env.PORT || 3000,
-  fetch: app.fetch,
+	port: process.env.PORT || 3000,
+	fetch: app.fetch,
 };
