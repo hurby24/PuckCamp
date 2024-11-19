@@ -20,7 +20,11 @@ async function sendEmail(
 export async function sendVerificationEmail(
 	email: string,
 	code: string,
-): Promise<void> {}
+): Promise<void> {
+	const subject = "Verify your email address";
+	const body = `Your verification code is: ${code}`;
+	await sendEmail(email, subject, body);
+}
 
 export async function sendPasswordResetEmail(
 	email: string,

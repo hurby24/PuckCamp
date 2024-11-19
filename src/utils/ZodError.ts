@@ -24,6 +24,6 @@ const zodErrorOptions: ErrorMessageOptions = {
 
 export const generateZodErrorMessage = (error: ZodError): string => {
 	const err = generateErrorMessage(error.issues, zodErrorOptions);
-	const fullError = `[ \n" + ${err} + "] \n`;
+	const fullError = `[\n ${err} \n]`;
 	return JSON.parse(fullError);
 };

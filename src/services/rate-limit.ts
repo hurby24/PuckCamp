@@ -36,7 +36,7 @@ export class TokenBucket {
             local max                   = tonumber(ARGV[1])
             local refillIntervalSeconds = tonumber(ARGV[2])
             local cost                  = tonumber(ARGV[3])
-            local now                   = tonumber(ARGV[4]) -- Current unix time in seconds
+            local now                   = tonumber(ARGV[4])
             
             local fields = redis.call("HGETALL", key)
             if #fields == 0 then

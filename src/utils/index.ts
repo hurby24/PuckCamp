@@ -2,10 +2,19 @@ import { encodeBase32LowerCaseNoPadding } from "@oslojs/encoding";
 export { ApiError } from "./ApiError";
 export { generateZodErrorMessage } from "./ZodError";
 export { createCsrfToken, validateCsrfToken } from "./csrfToken";
+import { customAlphabet } from "nanoid";
 
 export function generateIdFromEntropySize(size: number): string {
 	const buffer = crypto.getRandomValues(new Uint8Array(size));
 	return encodeBase32LowerCaseNoPadding(buffer);
+}
+
+export function generateNanoId(size: number): string {
+	const alphabet =
+		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	const nanoid = customAlphabet(alphabet, size);
+	const id = nanoid();
+	return id;
 }
 
 export async function validateCaptcha(

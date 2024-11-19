@@ -8,6 +8,13 @@
 			"when": 1730065765504,
 			"tag": "0000_fat_susan_delgado",
 			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1732027039565,
+			"tag": "0001_redundant_shape",
+			"breakpoints": true
 		}
 	]
 }

@@ -1,3 +1,5 @@
+import type { Context } from "hono";
+import { setSignedCookie } from "hono/cookie";
 import { getRedisClient } from "../../db/redisClient";
 import { generateIdFromEntropySize } from "../../utils";
 
@@ -111,6 +113,22 @@ export async function invalidateAllSessions(userId: string): Promise<void> {
 	} else {
 		await redis.del(`user:${userId}:sessions`);
 	}
+}
+export async function setSessionTokenCookie(
+	context: Context,
+	token: string,
+	expiresAt: Date,
+): Promise<void> {
+	if (process.env.HMAC_SECRET === undefined) {
+		throw new Error("HMAC_SECRET is not defined");
+	}
+	await setSignedCookie(context, "SID", token, process.env.HMAC_SECRET, {
+		httpOnly: true,
+		path: "/",
+		secure: true,
+		sameSite: "lax",
+		expires: expiresAt,
+	});
 }
 
 export interface Session {

@@ -4,6 +4,7 @@ export {
 	validateSessionToken,
 	invalidateAllSessions,
 	invalidateSession,
+	setSessionTokenCookie,
 } from "./session";
 export type { Session, SessionOptions } from "./session";
 export {
@@ -16,3 +17,4 @@ export {
 	createEmailVerificationCode,
 	validateEmailVerificationCode,
 } from "./email-verification";
+export { sendVerificationEmail, sendPasswordResetEmail } from "./email";

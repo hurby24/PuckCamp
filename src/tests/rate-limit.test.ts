@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll } from "bun:test";
 import { TokenBucket } from "../services/rate-limit";
 import { getRedisClient } from "../db/redisClient";
-import { Redis } from "ioredis";
+import type { Redis } from "ioredis";
 
 describe("TokenBucket", () => {
 	let redisClient: Redis;
